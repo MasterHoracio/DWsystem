@@ -1,0 +1,78 @@
+grafica
+
+https://www.zingchart.com/docs/tutorials/loading-data/loading-mysql-data/
+http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/column-parsed/
+
+backup:   
+cd C:\Program Files\MySQL\MySQL Server 5.7\bin
+mysqldump  -u root -p dwsystem>D:\dwsystemback.sql
+
+source C:\dwsystem.sql
+create database dwsystem;
+use dwsystem
+insert into usuario values("gibran0219", "gibran_reyes@hotmail.es", "soporte");
+grant all privileges on dwsystem.* to 'admin'@'localhost' identified by '1234';
+
+
+
+
+*************
+
+create database dwsystem;
+
+CREATE TABLE  `Usuario` (
+  
+`nombre_usuario` VARCHAR(25) NOT NULL,
+  `correo` VARCHAR(60) NOT NULL,
+ 
+ `password` VARCHAR(40) NOT NULL,
+ 
+ PRIMARY KEY (`nombre_usuario`))
+;
+
+
+CREATE TABLE `Carga` (
+ 
+ `NombreProyecto` VARCHAR(50) NOT NULL,
+ 
+ `nombre_usuario` VARCHAR(25) NOT NULL,
+  
+`Fecha` DATE NOT NULL,
+  PRIMARY KEY (`NombreProyecto`, `Fecha`),
+ 
+ INDEX `nombre_us_idx` (`nombre_usuario` ASC),
+  CONSTRAINT `nombre_us`
+  
+
+  FOREIGN KEY (`nombre_usuario`)
+    
+REFERENCES `Usuario` (`nombre_usuario`)
+   
+ ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+;
+
+
+CREATE TABLE `Genera` (
+  
+`NombreVista` VARCHAR(50) NOT NULL,
+
+  `nombre_usuario` VARCHAR(25) NOT NULL,
+ 
+ `Fecha` DATE NOT NULL,
+  PRIMARY KEY (`NombreVista`, `Fecha`),
+ 
+ INDEX `nusuariog_idx` (`nombre_usuario` ASC),
+  CONSTRAINT `nusuariog`
+  
+  
+FOREIGN KEY (`nombre_usuario`)
+    
+REFERENCES `Usuario` (`nombre_usuario`)
+  
+  ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+;
+
+
+http://jsfiddle.net/gh/get/jquery/3.1.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/columnrange/
